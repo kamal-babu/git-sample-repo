@@ -1,5 +1,5 @@
 Python practice:
-
+================================================================
 Q:Print multiplication table from 1 to 10:
 
 A:
@@ -7,4 +7,25 @@ for i in range(1,11):
     for j in range(1,11):
         print(i*j,end=' ')
     print("\n")
+================================================================
+Q: Pattern printing:
 
+A:
+for i in range(6, 0, -1):
+    for j in range(0, i - 1):
+        print("*", end=' ')
+    print(" ")
+================================================================
+
+Q:Write a function called exponent(base, exp) that returns an int value of base raises to the power of exp
+
+A:
+def exponent(base, exp):
+    c=1
+    num=exp
+    while(num > 0):
+        c=c*base
+        num=num-1
+    print(c)
+print(exponent(5,4))
+================================================================
