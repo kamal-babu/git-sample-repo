@@ -5,8 +5,33 @@ movie rating
 # Write your MySQL query statement below
 (select name as results from users u join movierating m on u.user_id = m.user_id group by name
 order by count(rating) desc,1 limit 1)
-union
+union all
 (select title as results from movies m1 join movierating a on m1.movie_id=a.movie_id 
 where date_format(created_at,'%Y-%m')='2020-02' group by m1.movie_id order by avg(rating) desc,1 limit 1);
 
+==================================================================================
+exchange seats:
+
+# Write your MySQL query statement below
+select
+case when mod(id,2)=0 then id-1
+when mod(id,2)=1 and id+1 not in (select id from seat) then id
+else id+1 end as id,
+student
+from seat order by id
+==================================================================================
+Manager atlest 5 direct reporties
+# Write your MySQL query statement below
+select name from employee where id in(
+select managerId from employee group by managerId having count(id) >=5
+)
+
+==================================================================================
+confirmation rate:
+# Write your MySQL query statement below
+SELECT a.user_id, round(ifnull(avg(action = 'confirmed'), 0),2) as confirmation_rate
+FROM Signups a
+LEFT JOIN Confirmations b
+ON a.user_id = b.user_id
+GROUP BY a.user_id
 ==================================================================================
