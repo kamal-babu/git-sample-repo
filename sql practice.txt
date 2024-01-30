@@ -65,3 +65,12 @@ group by
 customer_id
 having count(distinct product_key ) = (select count(product_key ) from product)
 ==================================================================================
+consecutive numbers:
+# Write your MySQL query statement below
+with c as
+(
+select id,num,lead(num) over(order by id) as a,lag(num) over(order by id) as b
+from Logs
+)
+select distinct num as ConsecutiveNums from c where num = a and num = b
+==================================================================================
