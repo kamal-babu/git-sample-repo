@@ -52,3 +52,9 @@ select round(100*sum(immediate)/count(immediate),2) as 'immediate_percentage'
 from ok
 where rn=1
 ==================================================================================
+product sales analysis:
+# Write your MySQL query statement below
+select product_id,year as first_year,quantity,price from(
+select product_id,year,quantity,price,dense_rank() over(partition by product_id order by year) as rn from sales
+)a where a.rn=1
+==================================================================================
