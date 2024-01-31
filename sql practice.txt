@@ -121,3 +121,11 @@ from insurance)
 
 select round(sum(TIV_2016),2) as TIV_2016 from cte where cnt1=1 and cnt!=1
 ==================================================================================
+game analysis:
+select round(sum(if(datediff(a.event_date,temp.day1)=1,1,0))/count(distinct a.player_id),2) as fraction
+from
+(select player_id,min(event_date) as day1 from Activity
+group by player_id)as temp
+join activity a on
+temp.player_id=a.player_id
+==================================================================================
