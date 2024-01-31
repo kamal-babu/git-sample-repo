@@ -98,3 +98,12 @@ where c.visited_on>=t.visited_on and DATEDIFF(c.visited_on,t.visited_on)<=6
 group by c.visited_on having count(distinct t.visited_on)=7
 
 ==================================================================================
+salary categories:
+# Write your MySQL query statement below
+select "Low Salary" as category, sum(if(income<20000,1,0)) as accounts_count from Accounts
+union
+select "Average Salary" as category, sum(if(income>=20000 and income<=50000,1,0)) as accounts_count from Accounts
+union
+select "High Salary" as category, sum(if(income>50000,1,0)) as accounts_count from Accounts
+
+==================================================================================
